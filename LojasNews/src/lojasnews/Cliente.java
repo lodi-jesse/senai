@@ -9,5 +9,7 @@ public class Cliente {
     Long codigo;
     String nome;
     Date nascimento;
-    int cpf;
+    String cpf;
+    String email;
+    String telefone;
 }
