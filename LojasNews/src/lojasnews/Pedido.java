@@ -6,45 +6,36 @@ import java.util.List;
 
 public class Pedido {
 
-	private Cliente c1 = new Cliente();
-	private List<Item> itm = new ArrayList<>();
-	private double valorTotal;
+	private static Long contadorCodigo = 1l;
 	private Long codigo;
+
+	private List<Item> itens = new ArrayList<>();
 	private Date dataCompra;
 
 	public Pedido() {
 
 	}
 
-	public Pedido(Cliente c1, Long codigo, Date dataCompra) {
-		this.c1 = c1;
-		this.codigo = codigo;
+	public Pedido(Item... itens) {
+		for (Item item : itens) {
+			this.itens.add(item);
+		}
+		codigo = contadorCodigo;
+		contadorCodigo += 1;
+	}
+
+	public Pedido(Date dataCompra, Item... itens) {
 		this.dataCompra = dataCompra;
-
+		codigo = contadorCodigo;
+		contadorCodigo += 1;
 	}
 
-	public Cliente getC1() {
-		return c1;
+	public List<Item> getItens() {
+		return itens;
 	}
 
-	public void setC1(Cliente c1) {
-		this.c1 = c1;
-	}
-
-	public List<Item> getItm() {
-		return itm;
-	}
-
-	public void setItm(List<Item> itm) {
-		this.itm = itm;
-	}
-
-	public double getValorTotal() {
-		return valorTotal;
-	}
-
-	public void setValorTotal(double valorTotal) {
-		this.valorTotal = valorTotal;
+	public void setItens(List<Item> itens) {
+		this.itens = itens;
 	}
 
 	public Long getCodigo() {
@@ -63,4 +54,12 @@ public class Pedido {
 		this.dataCompra = dataCompra;
 	}
 
+	public double getValorTotal() {
+		double total = 0;
+		for (Item item : itens) {
+			total += item.getQuantidade() * item.getProduto().getPreco();
+		};
+		return total;
+	}
+	
 }

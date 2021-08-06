@@ -1,27 +1,27 @@
 package lojasnews;
 
+import java.security.InvalidParameterException;
+
 public class Produto {
 
 	private static Long contadorCodigo = 1l;
-	
 	private Long codigo;
+
 	private String nome;
 	private double preco;
-	private int quantidadeEstoque;
 
 	public Produto() {
 
 	}
 
-	public Produto(String nome, double preco, int quantidadeEstoque) {
-		if (nome.isBlank() || preco < 0 || quantidadeEstoque < 0) {
-			System.out.println("Produto Inválido");
-		} else {
+	public Produto(String nome, double preco) {
+		if (nome.isBlank() || preco < 0)
+			throw new InvalidParameterException("Atributo(s) inválido(s)");
+		else {
 			this.nome = nome;
 			this.preco = preco;
-			this.quantidadeEstoque = quantidadeEstoque;
-			this.codigo = contadorCodigo;
-			contadorCodigo += 1;
+			codigo = contadorCodigo;
+			contadorCodigo += 1l;
 		}
 	}
 
@@ -38,11 +38,10 @@ public class Produto {
 	}
 
 	public void setNome(String nome) {
-		if (nome.isBlank()) {
-			System.out.println("Nome inválido");
-			return;
-		} else
-		this.nome = nome;
+		if (nome.isBlank())
+			throw new InvalidParameterException("Nome do produto \"" + this.nome + "\" é inválido");
+		else
+			this.nome = nome;
 	}
 
 	public double getPreco() {
@@ -50,23 +49,17 @@ public class Produto {
 	}
 
 	public void setPreco(double preco) {
-		if (preco <= 0) {
-			System.out.println("Preço inválido");
-			return;
-		} else
+		if (preco <= 0)
+			throw new InvalidParameterException("Preço do produto \"" + this.nome + "\" é inválido");
+		else
 			this.preco = preco;
 	}
 
-	public int getQuantidadeEstoque() {
-		return quantidadeEstoque;
-	}
-
-	public void setQuantidadeEstoque(int quantidadeEstoque) {
-		if (quantidadeEstoque < 0) {
-			System.out.println("Quantidade de Estoque Inválida");
-			return;
-		} else
-			this.quantidadeEstoque = quantidadeEstoque;
+	public void aplicarDesconto(double desconto) {
+		if (desconto > 100 || desconto <= 0)
+			throw new InvalidParameterException("Desconto para o produto \"" + this.nome + "\" é inválido");
+		else
+			preco *= (desconto / 100);
 	}
 
 }

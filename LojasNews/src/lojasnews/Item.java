@@ -1,43 +1,47 @@
 package lojasnews;
 
+import java.security.InvalidParameterException;
+
 public class Item {
 
-	private Pedido p1 = new Pedido();
-	private Produto prod;
-	private int quantidade;
+	private Produto produto;
+	private double quantidade;
 
 	public Item() {
 
 	}
 
-	public Item(Pedido p1, Produto prod, int quantidade) {
-		this.p1 = p1;
-		this.prod = prod;
-		this.quantidade = quantidade;
-
+	public Item(ProdutoUnidade produto, int quantidade) {
+		if (quantidade <= 0 || quantidade > produto.getQuantidadeEstoqueUn())
+			throw new InvalidParameterException("Atributo(s) inválido(s)");
+		else {
+			this.produto = produto;
+			this.quantidade = quantidade;
+		}
 	}
 
-	public Pedido getP1() {
-		return p1;
+	public Item(ProdutoPeso produto, double quantidade) {
+		if (quantidade <= 0 || quantidade > produto.getQuantidadeEstoqueKg())
+			throw new InvalidParameterException("Atributo(s) inválido(s)");
+		else {
+			this.produto = produto;
+			this.quantidade = quantidade;
+		}
 	}
 
-	public void setP1(Pedido p1) {
-		this.p1 = p1;
+	public Produto getProduto() {
+		return produto;
 	}
 
-	public Produto getProd() {
-		return prod;
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 
-	public void setProd(Produto prod) {
-		this.prod = prod;
-	}
-
-	public int getQuantidade() {
+	public double getQuantidade() {
 		return quantidade;
 	}
 
-	public void setQuantidade(int quantidade) {
+	public void setQuantidade(double quantidade) {
 		this.quantidade = quantidade;
 	}
 
