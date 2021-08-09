@@ -13,7 +13,8 @@ public class Pedido {
 	private Date dataCompra;
 
 	public Pedido() {
-
+		codigo = contadorCodigo;
+		contadorCodigo += 1;
 	}
 
 	public Pedido(Item... itens) {

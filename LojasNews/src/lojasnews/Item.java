@@ -17,6 +17,8 @@ public class Item {
 		else {
 			this.produto = produto;
 			this.quantidade = quantidade;
+			int estoqueAtual = produto.getQuantidadeEstoqueUn();
+			produto.setQuantidadeEstoqueUn(estoqueAtual - quantidade);
 		}
 	}
 
@@ -26,6 +28,8 @@ public class Item {
 		else {
 			this.produto = produto;
 			this.quantidade = quantidade;
+			double estoqueAtual = produto.getQuantidadeEstoqueKg();
+			produto.setQuantidadeEstoqueKg(estoqueAtual - quantidade);
 		}
 	}
 

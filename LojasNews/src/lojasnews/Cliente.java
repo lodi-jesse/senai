@@ -1,112 +1,60 @@
 package lojasnews;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-public class Cliente {
+public class Cliente extends Pessoa implements ComportamentosPessoa {
 
-	private static Long contadorCodigo = 1l;
-	private Long codigo;
-
-	private String cpf;
-	private String nome;
-	private String email;
-	private String telefone;
-	private Date nascimento;
-
-	private List<Pedido> pedidos = new ArrayList<>();
+	private Pedido pedido = new Pedido();
 
 	public Cliente() {
-
+		super();
 	}
 
 	public Cliente(String nome, String telefone) {
-		this.nome = nome;
-		this.telefone = telefone;
-
-		codigo = contadorCodigo;
-		contadorCodigo += 1;
+		super(nome, telefone);
 	}
 
 	public Cliente(String cpf, String nome, String email, String telefone, Date nascimento) {
-		this.cpf = cpf;
-		this.nome = nome;
-		this.email = email;
-		this.telefone = telefone;
-		this.nascimento = nascimento;
-
-		codigo = contadorCodigo;
-		contadorCodigo += 1;
+		super(cpf, nome, email, telefone, nascimento);
 	}
 
-	public Long getCodigo() {
-		return codigo;
+	public Pedido getPedido() {
+		return pedido;
 	}
 
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
-	public Date getNascimento() {
-		return nascimento;
-	}
-
-	public void setNascimento(Date nascimento) {
-		this.nascimento = nascimento;
-	}
-
-	public List<Pedido> getPedidos() {
-		return pedidos;
-	}
-
-	public void setPedidos(List<Pedido> pedidos) {
-		this.pedidos = pedidos;
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
 	}
 
 	@Override
 	public String toString() {
-		double total = 0;
-		String mensagem = nome + ", com o(s) pedido(s): ";
+		String mensagem = super.getNome() + ", com o pedido: " + pedido.getCodigo();
 
-		for (Pedido pedido : pedidos) {
-			mensagem += pedido.getCodigo() + ", ";
-			total += pedido.getValorTotal();
+		for (Item item : pedido.getItens()) {
+			if (item.getProduto().getClass() == ProdutoUnidade.class)
+				mensagem += "\n" + item.getQuantidade() + " Unidades: " + item.getProduto().getNome();
+			else
+				mensagem += "\n" + item.getQuantidade() + " Kg: " + item.getProduto().getNome();
 		}
 
-		return mensagem += "\n--> R$:" + total;
+		return mensagem += "\ntotal: R$" + pedido.getValorTotal();
+	}
+
+	@Override
+	public void comprar(ProdutoUnidade produto, int quantidade) {
+		Item item = new Item(produto, quantidade);
+		pedido.getItens().add(item);
+	}
+
+	@Override
+	public void comprar(ProdutoPeso produto, double quantidade) {
+		Item item = new Item(produto, quantidade);
+		pedido.getItens().add(item);
+	}
+
+	@Override
+	public void comprimentar() {
+		System.out.println("\nooopah! Fala aí Zé, hoje eu vou querer...\n");
 	}
 
 }
