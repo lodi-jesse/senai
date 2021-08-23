@@ -1,5 +1,10 @@
 package lojasnews;
 
+import entidades.ProdutoUnidade;
+import entidades.ProdutoPeso;
+import entidades.Fornecedor;
+import entidades.Cliente;
+
 public class LojasNewsPrincipal {
 
 	public static void main(String[] args) {
@@ -7,7 +12,7 @@ public class LojasNewsPrincipal {
 		ProdutoUnidade produto1 = new ProdutoUnidade("notebook", 3.599, 5);
 		ProdutoPeso produto2 = new ProdutoPeso("fruta", 0.50, 10);
 
-		Cliente cliente = new Cliente("Joãozinho", "(48)91111-2222");
+		Cliente cliente = new Cliente("Joï¿½ozinho", "(48)91111-2222");
 		cliente.comprimentar();
 		cliente.comprar(produto1, 2);
 		cliente.comprar(produto2, 1.5);

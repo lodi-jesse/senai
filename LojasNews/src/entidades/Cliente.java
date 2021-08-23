@@ -1,6 +1,9 @@
-package lojasnews;
+package entidades;
 
+import entidades.Pedido;
+import entidades.Pessoa;
 import java.util.Date;
+import lojasnews.ComportamentosPessoa;
 
 public class Cliente extends Pessoa implements ComportamentosPessoa {
 
@@ -54,7 +57,7 @@ public class Cliente extends Pessoa implements ComportamentosPessoa {
 
 	@Override
 	public void comprimentar() {
-		System.out.println("\nooopah! Fala aí Zé, hoje eu vou querer...\n");
+		System.out.println("\nooopah! Fala aï¿½ Zï¿½, hoje eu vou querer...\n");
 	}
 
 }

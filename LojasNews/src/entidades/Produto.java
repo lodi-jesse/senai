@@ -1,4 +1,4 @@
-package lojasnews;
+package entidades;
 
 import java.security.InvalidParameterException;
 
@@ -16,7 +16,7 @@ public class Produto {
 
 	public Produto(String nome, double preco) {
 		if (nome.isBlank() || preco < 0)
-			throw new InvalidParameterException("Atributo(s) inválido(s)");
+			throw new InvalidParameterException("Atributo(s) invï¿½lido(s)");
 		else {
 			this.nome = nome;
 			this.preco = preco;
@@ -39,7 +39,7 @@ public class Produto {
 
 	public void setNome(String nome) {
 		if (nome.isBlank())
-			throw new InvalidParameterException("Nome do produto \"" + this.nome + "\" é inválido");
+			throw new InvalidParameterException("Nome do produto \"" + this.nome + "\" ï¿½ invï¿½lido");
 		else
 			this.nome = nome;
 	}
@@ -50,14 +50,14 @@ public class Produto {
 
 	public void setPreco(double preco) {
 		if (preco <= 0)
-			throw new InvalidParameterException("Preço do produto \"" + this.nome + "\" é inválido");
+			throw new InvalidParameterException("Preï¿½o do produto \"" + this.nome + "\" ï¿½ invï¿½lido");
 		else
 			this.preco = preco;
 	}
 
 	public void aplicarDesconto(double desconto) {
 		if (desconto > 100 || desconto <= 0)
-			throw new InvalidParameterException("Desconto para o produto \"" + this.nome + "\" é inválido");
+			throw new InvalidParameterException("Desconto para o produto \"" + this.nome + "\" ï¿½ invï¿½lido");
 		else
 			preco *= (desconto / 100);
 	}

@@ -1,5 +1,6 @@
-package lojasnews;
+package entidades;
 
+import entidades.Produto;
 import java.security.InvalidParameterException;
 
 public class ProdutoPeso extends Produto {
@@ -22,7 +23,7 @@ public class ProdutoPeso extends Produto {
 	public void setQuantidadeEstoqueKg(double quantidadeEstoqueKg) {
 		if (quantidadeEstoqueKg < 0)
 			throw new InvalidParameterException(
-					"Quantidade no estoque do produto \"" + super.getNome() + "\" é inválida");
+					"Quantidade no estoque do produto \"" + super.getNome() + "\" ï¿½ invï¿½lida");
 		else
 			this.quantidadeEstoqueKg = quantidadeEstoqueKg;
 	}

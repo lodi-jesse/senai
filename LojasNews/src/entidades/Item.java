@@ -1,5 +1,6 @@
-package lojasnews;
+package entidades;
 
+import entidades.Produto;
 import java.security.InvalidParameterException;
 
 public class Item {
@@ -13,7 +14,7 @@ public class Item {
 
 	public Item(ProdutoUnidade produto, int quantidade) {
 		if (quantidade <= 0 || quantidade > produto.getQuantidadeEstoqueUn())
-			throw new InvalidParameterException("Atributo(s) inválido(s)");
+			throw new InvalidParameterException("Atributo(s) invï¿½lido(s)");
 		else {
 			this.produto = produto;
 			this.quantidade = quantidade;
@@ -24,7 +25,7 @@ public class Item {
 
 	public Item(ProdutoPeso produto, double quantidade) {
 		if (quantidade <= 0 || quantidade > produto.getQuantidadeEstoqueKg())
-			throw new InvalidParameterException("Atributo(s) inválido(s)");
+			throw new InvalidParameterException("Atributo(s) invï¿½lido(s)");
 		else {
 			this.produto = produto;
 			this.quantidade = quantidade;

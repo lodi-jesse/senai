@@ -1,4 +1,4 @@
-package lojasnews;
+package entidades;
 
 import java.util.Date;
 

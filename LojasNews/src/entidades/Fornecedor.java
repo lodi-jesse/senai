@@ -1,6 +1,8 @@
-package lojasnews;
+package entidades;
 
+import entidades.Pessoa;
 import java.util.Date;
+import lojasnews.ComportamentosPessoa;
 
 public class Fornecedor extends Pessoa implements ComportamentosPessoa {
 
@@ -35,7 +37,7 @@ public class Fornecedor extends Pessoa implements ComportamentosPessoa {
 
 	@Override
 	public void comprimentar() {
-		System.out.println("\nOlá seu José! Gostaria de comprar o que hoje?\n");
+		System.out.println("\nOlï¿½ seu Josï¿½! Gostaria de comprar o que hoje?\n");
 	}
 
 }

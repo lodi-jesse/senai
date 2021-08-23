@@ -1,5 +1,8 @@
 package lojasnews;
 
+import entidades.ProdutoUnidade;
+import entidades.ProdutoPeso;
+
 public interface ComportamentosPessoa {
 
 	public String toString();
