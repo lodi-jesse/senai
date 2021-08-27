@@ -1,6 +1,8 @@
 package dao;
 
 
+import uteis.Conexao;
+
 public class PessoaDao implements IGerenciamentoDAO {
 
     private Conexao conexao;
@@ -11,7 +13,7 @@ public class PessoaDao implements IGerenciamentoDAO {
         
         try {
             
-            preparedStatement pst;
+
             
         } catch (Exception e) {
             
