@@ -1,6 +1,8 @@
 package entidades;
 
-import entidades.Produto;
+import principal.ProdutoPeso;
+import principal.ProdutoUnidade;
+
 import java.security.InvalidParameterException;
 
 public class Item {

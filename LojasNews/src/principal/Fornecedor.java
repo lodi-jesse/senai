@@ -1,8 +1,7 @@
-package entidades;
+package principal;
 
 import entidades.Pessoa;
 import java.util.Date;
-import lojasnews.ComportamentosPessoa;
 
 public class Fornecedor extends Pessoa implements ComportamentosPessoa {
 
@@ -10,12 +9,12 @@ public class Fornecedor extends Pessoa implements ComportamentosPessoa {
 		super();
 	}
 
-	public Fornecedor(String nome, String telefone) {
-		super(nome, telefone);
+	public Fornecedor(String nome, String sobrenome, String telefone) {
+		super(nome, sobrenome, telefone);
 	}
 
-	public Fornecedor(String cpf, String nome, String email, String telefone, Date nascimento) {
-		super(cpf, nome, email, telefone, nascimento);
+	public Fornecedor(String cpf, String nome, String sobrenome, String email, String telefone, Date nascimento) {
+		super(cpf, nome, sobrenome, email, telefone, nascimento);
 	}
 
 	@Override
@@ -37,7 +36,7 @@ public class Fornecedor extends Pessoa implements ComportamentosPessoa {
 
 	@Override
 	public void comprimentar() {
-		System.out.println("\nOlá seu José! Gostaria de comprar o que hoje?\n");
+		System.out.println("\nOla seu Josevaldo! Gostaria de comprar o que hoje?\n");
 	}
 
 }

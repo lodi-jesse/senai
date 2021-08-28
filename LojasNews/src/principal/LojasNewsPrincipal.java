@@ -1,13 +1,10 @@
-package lojasnews;
+package principal;
 
 import java.sql.Connection;
+import java.sql.SQLException;
+
 import conecta.Conecta;
 import dao.ClienteDao;
-import entidades.Cliente;
-import entidades.Fornecedor;
-import entidades.ProdutoPeso;
-import entidades.ProdutoUnidade;
-import java.sql.SQLException;
 
 public class LojasNewsPrincipal {
 
@@ -29,14 +26,12 @@ public class LojasNewsPrincipal {
 //		fornecedor.comprar(produto1, 2);
 //
 //		System.out.println(produto1.getNome() + "\nEstoque atual: " + produto1.getQuantidadeEstoqueUn());
-                
-        Connection conexao = Conecta.getConnection();
-        System.out.println("Conexao realizada com sucesso");
-        
-        Cliente cliente = new Cliente("pedro", "ciclano", "(00)90000-0000");
-        ClienteDao cDao = new ClienteDao(cliente);
-        
-        cDao.inserir();
+
+		Cliente cliente = new Cliente("Lucia", "Sobrenome", "(00)90000-0000");
+		cliente.setEmail("lucia@gmail.com");
+		ClienteDao cDao = new ClienteDao(cliente);
+
+		cDao.inserir();
 
 	}
 

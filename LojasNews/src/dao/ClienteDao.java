@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import conecta.Conecta;
-import entidades.Cliente;
+import principal.Cliente;
 
 public class ClienteDao implements IGerenciamentoDAO {
 

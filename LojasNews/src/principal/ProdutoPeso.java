@@ -1,4 +1,4 @@
-package entidades;
+package principal;
 
 import entidades.Produto;
 import java.security.InvalidParameterException;
