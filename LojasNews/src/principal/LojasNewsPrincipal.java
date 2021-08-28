@@ -1,11 +1,8 @@
-package lojasnews;
+package principal;
 
 import java.sql.Connection;
 import conecta.Conecta;
-import entidades.Cliente;
-import entidades.Fornecedor;
-import entidades.ProdutoPeso;
-import entidades.ProdutoUnidade;
+
 import java.sql.SQLException;
 
 public class LojasNewsPrincipal {

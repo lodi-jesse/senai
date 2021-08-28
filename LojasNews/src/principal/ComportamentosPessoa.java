@@ -1,7 +1,4 @@
-package lojasnews;
-
-import entidades.ProdutoUnidade;
-import entidades.ProdutoPeso;
+package principal;
 
 public interface ComportamentosPessoa {
 

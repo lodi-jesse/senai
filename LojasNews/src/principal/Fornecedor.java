@@ -1,8 +1,7 @@
-package entidades;
+package principal;
 
 import entidades.Pessoa;
 import java.util.Date;
-import lojasnews.ComportamentosPessoa;
 
 public class Fornecedor extends Pessoa implements ComportamentosPessoa {
 
