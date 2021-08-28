@@ -6,29 +6,22 @@ import java.util.List;
 
 public class Pedido {
 
-	private static Long contadorCodigo = 1l;
 	private Long codigo;
 
 	private List<Item> itens = new ArrayList<>();
 	private Date dataCompra;
 
 	public Pedido() {
-		codigo = contadorCodigo;
-		contadorCodigo += 1;
 	}
 
 	public Pedido(Item... itens) {
 		for (Item item : itens) {
 			this.itens.add(item);
 		}
-		codigo = contadorCodigo;
-		contadorCodigo += 1;
 	}
 
 	public Pedido(Date dataCompra, Item... itens) {
 		this.dataCompra = dataCompra;
-		codigo = contadorCodigo;
-		contadorCodigo += 1;
 	}
 
 	public List<Item> getItens() {

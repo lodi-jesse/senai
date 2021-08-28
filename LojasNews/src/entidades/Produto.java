@@ -4,7 +4,6 @@ import java.security.InvalidParameterException;
 
 public class Produto {
 
-	private static Long contadorCodigo = 1l;
 	private Long codigo;
 
 	private String nome;
@@ -20,8 +19,6 @@ public class Produto {
 		else {
 			this.nome = nome;
 			this.preco = preco;
-			codigo = contadorCodigo;
-			contadorCodigo += 1l;
 		}
 	}
 

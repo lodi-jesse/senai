@@ -4,11 +4,11 @@ import java.util.Date;
 
 public abstract class Pessoa {
 
-	private static Long contadorCodigo = 1l;
 	private Long codigo;
 
 	private String cpf;
 	private String nome;
+	private String sobrenome;
 	private String email;
 	private String telefone;
 	private Date nascimento;
@@ -17,23 +17,21 @@ public abstract class Pessoa {
 
 	}
 
-	public Pessoa(String nome, String telefone) {
+	public Pessoa(String nome, String sobrenome, String telefone) {
 		this.nome = nome;
+		this.sobrenome = sobrenome;
 		this.telefone = telefone;
 
-		codigo = contadorCodigo;
-		contadorCodigo += 1;
 	}
 
-	public Pessoa(String cpf, String nome, String email, String telefone, Date nascimento) {
+	public Pessoa(String cpf, String nome, String sobrenome, String email, String telefone, Date nascimento) {
 		this.cpf = cpf;
 		this.nome = nome;
+		this.sobrenome = sobrenome;
 		this.email = email;
 		this.telefone = telefone;
 		this.nascimento = nascimento;
 
-		codigo = contadorCodigo;
-		contadorCodigo += 1;
 	}
 
 	public Long getCodigo() {
@@ -58,6 +56,14 @@ public abstract class Pessoa {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getSobrenome() {
+		return sobrenome;
+	}
+
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
 	}
 
 	public String getEmail() {

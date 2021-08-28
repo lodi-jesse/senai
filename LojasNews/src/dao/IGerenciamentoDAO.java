@@ -5,8 +5,8 @@ public interface IGerenciamentoDAO {
     
     public boolean inserir();
     
-    public boolean atualizar();
+    public boolean atualizar(int codigo);
     
-    public boolean excluir();
+    public boolean excluir(int codigo);
     
 }

@@ -1,24 +1,23 @@
 package entidades;
 
-import entidades.Pedido;
-import entidades.Pessoa;
 import java.util.Date;
+
 import lojasnews.ComportamentosPessoa;
 
 public class Cliente extends Pessoa implements ComportamentosPessoa {
 
-	private Pedido pedido = new Pedido();
+	private Pedido pedido;
 
-	public Cliente(String nome, String telefone) {
-		super(nome, telefone);
+	public Cliente(String nome, String sobrenome, String telefone) {
+		super(nome, sobrenome, telefone);
 	}
 
 	public Cliente() {
 		super();
 	}
 
-	public Cliente(String cpf, String nome, String email, String telefone, Date nascimento) {
-		super(cpf, nome, email, telefone, nascimento);
+	public Cliente(String cpf, String nome, String sobrenome, String email, String telefone, Date nascimento) {
+		super(cpf, nome, sobrenome, email, telefone, nascimento);
 	}
 
 	public Pedido getPedido() {
@@ -57,7 +56,7 @@ public class Cliente extends Pessoa implements ComportamentosPessoa {
 
 	@Override
 	public void comprimentar() {
-		System.out.println("\nooopah! Fala a� Z�, hoje eu vou querer...\n");
+		System.out.println("\nooopah! Fala ai Ze, hoje eu vou querer...\n");
 	}
 
 }
