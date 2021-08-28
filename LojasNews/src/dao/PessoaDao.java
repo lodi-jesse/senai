@@ -1,11 +1,11 @@
 package dao;
 
 
-import uteis.Conexao;
+import conecta.Conecta;
 
 public class PessoaDao implements IGerenciamentoDAO {
 
-    private Conexao conexao;
+    private Conecta conecta;
     
     
     @Override

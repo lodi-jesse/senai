@@ -37,7 +37,7 @@ public class Fornecedor extends Pessoa implements ComportamentosPessoa {
 
 	@Override
 	public void comprimentar() {
-		System.out.println("\nOl� seu Jos�! Gostaria de comprar o que hoje?\n");
+		System.out.println("\nOlá seu José! Gostaria de comprar o que hoje?\n");
 	}
 
 }

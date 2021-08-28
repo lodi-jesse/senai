@@ -16,7 +16,7 @@ public class Produto {
 
 	public Produto(String nome, double preco) {
 		if (nome.isBlank() || preco < 0)
-			throw new InvalidParameterException("Atributo(s) inv�lido(s)");
+			throw new InvalidParameterException("Atributo(s) inválido(s)");
 		else {
 			this.nome = nome;
 			this.preco = preco;
@@ -39,7 +39,7 @@ public class Produto {
 
 	public void setNome(String nome) {
 		if (nome.isBlank())
-			throw new InvalidParameterException("Nome do produto \"" + this.nome + "\" � inv�lido");
+			throw new InvalidParameterException("Nome do produto \"" + this.nome + "\" é inválido");
 		else
 			this.nome = nome;
 	}
@@ -50,14 +50,14 @@ public class Produto {
 
 	public void setPreco(double preco) {
 		if (preco <= 0)
-			throw new InvalidParameterException("Pre�o do produto \"" + this.nome + "\" � inv�lido");
+			throw new InvalidParameterException("Preço do produto \"" + this.nome + "\" é inválido");
 		else
 			this.preco = preco;
 	}
 
 	public void aplicarDesconto(double desconto) {
 		if (desconto > 100 || desconto <= 0)
-			throw new InvalidParameterException("Desconto para o produto \"" + this.nome + "\" � inv�lido");
+			throw new InvalidParameterException("Desconto para o produto \"" + this.nome + "\" é inválido");
 		else
 			preco *= (desconto / 100);
 	}

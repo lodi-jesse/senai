@@ -14,7 +14,7 @@ public class Item {
 
 	public Item(ProdutoUnidade produto, int quantidade) {
 		if (quantidade <= 0 || quantidade > produto.getQuantidadeEstoqueUn())
-			throw new InvalidParameterException("Atributo(s) inv�lido(s)");
+			throw new InvalidParameterException("Atributo(s) inválido(s)");
 		else {
 			this.produto = produto;
 			this.quantidade = quantidade;
@@ -25,7 +25,7 @@ public class Item {
 
 	public Item(ProdutoPeso produto, double quantidade) {
 		if (quantidade <= 0 || quantidade > produto.getQuantidadeEstoqueKg())
-			throw new InvalidParameterException("Atributo(s) inv�lido(s)");
+			throw new InvalidParameterException("Atributo(s) inválido(s)");
 		else {
 			this.produto = produto;
 			this.quantidade = quantidade;

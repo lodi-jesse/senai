@@ -9,12 +9,12 @@ public class Cliente extends Pessoa implements ComportamentosPessoa {
 
 	private Pedido pedido = new Pedido();
 
-	public Cliente() {
-		super();
-	}
-
 	public Cliente(String nome, String telefone) {
 		super(nome, telefone);
+	}
+
+	public Cliente() {
+		super();
 	}
 
 	public Cliente(String cpf, String nome, String email, String telefone, Date nascimento) {

@@ -23,7 +23,7 @@ public class ProdutoPeso extends Produto {
 	public void setQuantidadeEstoqueKg(double quantidadeEstoqueKg) {
 		if (quantidadeEstoqueKg < 0)
 			throw new InvalidParameterException(
-					"Quantidade no estoque do produto \"" + super.getNome() + "\" � inv�lida");
+					"Quantidade no estoque do produto \"" + super.getNome() + "\" é inválida");
 		else
 			this.quantidadeEstoqueKg = quantidadeEstoqueKg;
 	}
