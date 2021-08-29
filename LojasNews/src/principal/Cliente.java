@@ -46,13 +46,13 @@ public class Cliente extends Pessoa implements ComportamentosPessoa {
 
 	@Override
 	public void comprar(ProdutoUnidade produto, int quantidade) {
-		Item item = new Item(produto, quantidade);
+		Item item = new Item(pedido, produto, quantidade);
 		pedido.getItens().add(item);
 	}
 
 	@Override
 	public void comprar(ProdutoPeso produto, double quantidade) {
-		Item item = new Item(produto, quantidade);
+		Item item = new Item(pedido, produto, quantidade);
 		pedido.getItens().add(item);
 	}
 

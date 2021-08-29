@@ -25,8 +25,7 @@ public class LojasNewsPrincipal {
 //
 //		System.out.println(produto1.getNome() + "\nEstoque atual: " + produto1.getQuantidadeEstoqueUn());
 
-		Cliente cliente = new Cliente("Lucia", "Sobrenome", "(00)90000-0000");
-		cliente.setEmail("lucia@gmail.com");
+		Cliente cliente = new Cliente("Leandro", "Luiz", "(00)90000-0000");
 		ClienteDao cDao = new ClienteDao(cliente);
 
 		cDao.inserir();

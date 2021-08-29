@@ -6,87 +6,89 @@ import entidades.Item;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-public class ItemDAO implements IGerenciamentoDAO{
+public class ItemDAO implements IGerenciamentoDAO {
 
-    public static Connection conexao = Conecta.getConnection();
-    private Item item;
+	private static Connection conexao = Conecta.getConnection();
+	private Item item;
 
-    public ItemDAO(Item item) {
-        this.item = item;
-    }
-    
-    public Item getItem() {
-        return item;
-    }
+	public ItemDAO(Item item) {
+		this.item = item;
+	}
 
-    public void setItem(Item item) {
-        this.item = item;
-    }
+	public Item getItem() {
+		return item;
+	}
 
-    @Override
-    public boolean inserir() {
+	public void setItem(Item item) {
+		this.item = item;
+	}
 
-        String sql = "INSERT INTO item"
-            +"(produto, quantidade)"
-        + "VALUES "
-                + "(?, ?)";
+	@Override
+	public boolean inserir() {
+		String sql = "INSERT INTO itens " 
+					  + "(pedidos_codigo, produtos_codigo, quantidade) " 
+				   + "VALUES " 
+					  + "(?, ?, ?)";
 
-        try {
-            PreparedStatement stm = conexao.prepareStatement(sql);
+		try {
+			PreparedStatement stmt = conexao.prepareStatement(sql);
 
-            stm.setInt(1, item.getProduto());
-            stm.setDouble(2, item.getQuantidade());
+			stmt.setLong(1, item.getPedido().getCodigo());
+			stmt.setLong(2, item.getProduto().getCodigo());
+			stmt.setDouble(3, item.getQuantidade());
 
-            stm.execute();
-            stm.close();
+			stmt.execute();
+			stmt.close();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 
-        return false;
-    }
+		return false;
+	}
 
-    @Override
-    public boolean atualizar(int codigo) {
-        String sql = "UPDATE item SET"
-            +"produto = ?, quantidade = ?"
-                + "WHERE codigo = ? AND is_fornecedor = 0";
+	@Override
+	public boolean atualizar(Long codigo) {
+		String sql = "UPDATE itens SET " 
+					  + "pedidos_codigo = ?, produtos_codigo = ?, quantidade = ? " 
+				   + "WHERE codigo = ?";
 
-        try {
-            PreparedStatement stm = conexao.prepareStatement(sql);
+		try {
+			PreparedStatement stmt = conexao.prepareStatement(sql);
+			stmt.setLong(1, item.getPedido().getCodigo());
+			stmt.setLong(2, item.getProduto().getCodigo());
+			stmt.setDouble(3, item.getQuantidade());
+			stmt.setLong(4, codigo);
 
-            stm.setInt(1, item.getProduto());
-            stm.setDouble(2, item.getQuantidade());
+			stmt.execute();
+			stmt.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 
-            stm.execute();
-            stm.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+		return true;
+	}
 
-        return true;
-    }
+	@Override
+	public boolean excluir(Long codigo) {
+		String sql = "DELETE FROM itens WHERE codigo = ?";
 
-    @Override
-    public boolean excluir(int codigo) {
-        String sql = "DELETE FROM item WHERE codigo = ? AND is_fornecedor = 0";
+		try {
+			PreparedStatement stmt = conexao.prepareStatement(sql);
+			stmt.setLong(1, codigo);
 
-        try {
-            PreparedStatement stm = conexao.prepareStatement(sql);
-            stm.setInt(1, codigo);
+			stmt.execute();
+			stmt.close();
 
-            stm.execute();
-            stm.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-
-        return true;
-    }
+		return true;
+	}
 
 }

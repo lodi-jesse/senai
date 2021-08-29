@@ -53,7 +53,7 @@ public class ClienteDao implements IGerenciamentoDAO {
 	}
 
 	@Override
-	public boolean atualizar(int codigo) {
+	public boolean atualizar(Long codigo) {
 		String sql = "UPDATE pessoas SET "
 					  + "nome = ?, sobrenome = ?, telefone = ?, cpf = ?, email = ?, nascimento = ? "
 				   + "WHERE codigo = ? AND is_fornecedor = 0";
@@ -66,7 +66,7 @@ public class ClienteDao implements IGerenciamentoDAO {
 			stmt.setString(4, cliente.getCpf());
 			stmt.setString(5, cliente.getEmail());
 			stmt.setDate(6, (Date) cliente.getNascimento());
-			stmt.setInt(7, codigo);
+			stmt.setLong(7, codigo);
 
 			stmt.execute();
 			stmt.close();
@@ -79,12 +79,12 @@ public class ClienteDao implements IGerenciamentoDAO {
 	}
 
 	@Override
-	public boolean excluir(int codigo) {
+	public boolean excluir(Long codigo) {
 		String sql = "DELETE FROM pessoas WHERE codigo = ? AND is_fornecedor = 0";
 
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
-			stmt.setInt(1, codigo);
+			stmt.setLong(1, codigo);
 
 			stmt.execute();
 			stmt.close();
