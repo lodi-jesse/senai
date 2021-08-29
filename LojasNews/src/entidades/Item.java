@@ -36,7 +36,7 @@ public class Item {
 		}
 	}
 
-	public Produto getProduto() {
+	public int getProduto() {
 		return produto;
 	}
 
