@@ -1,9 +1,7 @@
 package principal;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 
-import conecta.Conecta;
 import dao.ClienteDao;
 
 public class LojasNewsPrincipal {
