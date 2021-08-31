@@ -28,7 +28,7 @@ public class Item {
 	}
 
 	public Item(Pedido pedido, ProdutoPeso produto, double quantidade) {
-		if (quantidade <= 0 || quantidade > produto.getQuantidadeEstoqueKg())
+		if (pedido == null || quantidade <= 0 || quantidade > produto.getQuantidadeEstoqueKg())
 			throw new InvalidParameterException("Atributo(s) inválido(s)");
 		else {
 			this.pedido = pedido;

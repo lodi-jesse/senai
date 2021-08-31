@@ -26,7 +26,7 @@ public class Produto {
 		return codigo;
 	}
 
-	protected void setCodigo(Long codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 

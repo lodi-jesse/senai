@@ -1,7 +1,7 @@
 package principal;
 
+import dao.CompraParaEstoqueDao;
 import entidades.Pessoa;
-import java.util.Date;
 
 public class Fornecedor extends Pessoa implements ComportamentosPessoa {
 
@@ -13,7 +13,7 @@ public class Fornecedor extends Pessoa implements ComportamentosPessoa {
 		super(nome, sobrenome, telefone);
 	}
 
-	public Fornecedor(String cpf, String nome, String sobrenome, String email, String telefone, Date nascimento) {
+	public Fornecedor(String cpf, String nome, String sobrenome, String email, String telefone, String nascimento) {
 		super(cpf, nome, sobrenome, email, telefone, nascimento);
 	}
 
@@ -26,12 +26,16 @@ public class Fornecedor extends Pessoa implements ComportamentosPessoa {
 	public void comprar(ProdutoUnidade produto, int quantidade) {
 		int estoqueAtual = produto.getQuantidadeEstoqueUn();
 		produto.setQuantidadeEstoqueUn(estoqueAtual + quantidade);
+		
+		new CompraParaEstoqueDao(this, produto, quantidade).inserir();
 	}
 
 	@Override
 	public void comprar(ProdutoPeso produto, double quantidade) {
 		double estoqueAtual = produto.getQuantidadeEstoqueKg();
 		produto.setQuantidadeEstoqueKg(estoqueAtual + quantidade);
+		
+		new CompraParaEstoqueDao(this, produto, quantidade).inserir();
 	}
 
 	@Override

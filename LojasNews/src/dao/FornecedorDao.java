@@ -1,14 +1,15 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import conecta.Conecta;
 import principal.Fornecedor;
 
-public class FornecedorDao implements IGerenciamentoDAO {
+public class FornecedorDao implements IGerenciamentoDao {
 
 	private static Connection conexao = Conecta.getConnection();
 	private Fornecedor fornecedor;
@@ -28,21 +29,28 @@ public class FornecedorDao implements IGerenciamentoDAO {
 	@Override
 	public boolean inserir() {
 		String sql = "INSERT INTO pessoas " 
-					  + "(nome, sobrenome, telefone, cfp, email, nascimento, is_fornecedor) "
+					  + "(nome, sobrenome, telefone, cpf, email, nascimento, is_fornecedor) "
 				   + "VALUES " 
 					  + "(?, ?, ?, ?, ?, ?, ?);";
 
 		try {
-			PreparedStatement stmt = conexao.prepareStatement(sql);
+			PreparedStatement stmt = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, fornecedor.getNome());
 			stmt.setString(2, fornecedor.getSobrenome());
 			stmt.setString(3, fornecedor.getTelefone());
 			stmt.setString(4, fornecedor.getCpf());
 			stmt.setString(5, fornecedor.getEmail());
-			stmt.setDate(6, (Date) fornecedor.getNascimento());
+			stmt.setString(6, fornecedor.getNascimento());
 			stmt.setInt(7, 1);
+			stmt.executeUpdate();
 
-			stmt.execute();
+			ResultSet rs = stmt.getGeneratedKeys();
+			if(rs.next()) {
+				int codigo = rs.getInt(1);
+				this.fornecedor.setCodigo((long)codigo);	
+			}
+
+			rs.close();
 			stmt.close();
 
 		} catch (SQLException e) {
@@ -66,7 +74,7 @@ public class FornecedorDao implements IGerenciamentoDAO {
 			stmt.setString(3, fornecedor.getTelefone());
 			stmt.setString(4, fornecedor.getCpf());
 			stmt.setString(5, fornecedor.getEmail());
-			stmt.setDate(6, (Date) fornecedor.getNascimento());
+			stmt.setString(6, fornecedor.getNascimento());
 			stmt.setLong(7, codigo);
 
 			stmt.execute();

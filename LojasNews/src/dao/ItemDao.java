@@ -6,12 +6,12 @@ import entidades.Item;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-public class ItemDAO implements IGerenciamentoDAO {
+public class ItemDao implements IGerenciamentoDao {
 
 	private static Connection conexao = Conecta.getConnection();
 	private Item item;
 
-	public ItemDAO(Item item) {
+	public ItemDao(Item item) {
 		this.item = item;
 	}
 

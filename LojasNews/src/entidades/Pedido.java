@@ -1,27 +1,38 @@
 package entidades;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+
+import principal.Cliente;
 
 public class Pedido {
 
 	private Long codigo;
 
+	private Cliente cliente;
 	private List<Item> itens = new ArrayList<>();
-	private Date dataCompra;
+	private String dataCompra;
 
 	public Pedido() {
 	}
 
-	public Pedido(Item... itens) {
+	public Pedido(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public Pedido(Cliente cliente, Item... itens) {
+		this.cliente = cliente;
 		for (Item item : itens) {
 			this.itens.add(item);
 		}
 	}
 
-	public Pedido(Date dataCompra, Item... itens) {
-		this.dataCompra = dataCompra;
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	public List<Item> getItens() {
@@ -40,11 +51,11 @@ public class Pedido {
 		this.codigo = codigo;
 	}
 
-	public Date getDataCompra() {
+	public String getDataCompra() {
 		return dataCompra;
 	}
 
-	public void setDataCompra(Date dataCompra) {
+	public void setDataCompra(String dataCompra) {
 		this.dataCompra = dataCompra;
 	}
 
@@ -52,8 +63,8 @@ public class Pedido {
 		double total = 0;
 		for (Item item : itens) {
 			total += item.getQuantidade() * item.getProduto().getPreco();
-		};
-		return total;
+		}
+		;return total;
 	}
-	
+
 }

@@ -1,7 +1,5 @@
 package principal;
 
-import java.util.Date;
-
 import entidades.Item;
 import entidades.Pedido;
 import entidades.Pessoa;
@@ -18,7 +16,7 @@ public class Cliente extends Pessoa implements ComportamentosPessoa {
 		super();
 	}
 
-	public Cliente(String cpf, String nome, String sobrenome, String email, String telefone, Date nascimento) {
+	public Cliente(String cpf, String nome, String sobrenome, String email, String telefone, String nascimento) {
 		super(cpf, nome, sobrenome, email, telefone, nascimento);
 	}
 

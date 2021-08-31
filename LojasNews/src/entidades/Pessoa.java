@@ -1,7 +1,5 @@
 package entidades;
 
-import java.util.Date;
-
 public abstract class Pessoa {
 
 	private Long codigo;
@@ -11,7 +9,7 @@ public abstract class Pessoa {
 	private String sobrenome;
 	private String email;
 	private String telefone;
-	private Date nascimento;
+	private String nascimento;
 
 	public Pessoa() {
 
@@ -24,7 +22,7 @@ public abstract class Pessoa {
 
 	}
 
-	public Pessoa(String cpf, String nome, String sobrenome, String email, String telefone, Date nascimento) {
+	public Pessoa(String cpf, String nome, String sobrenome, String email, String telefone, String nascimento) {
 		this.cpf = cpf;
 		this.nome = nome;
 		this.sobrenome = sobrenome;
@@ -82,11 +80,11 @@ public abstract class Pessoa {
 		this.telefone = telefone;
 	}
 
-	public Date getNascimento() {
+	public String getNascimento() {
 		return nascimento;
 	}
 
-	public void setNascimento(Date nascimento) {
+	public void setNascimento(String nascimento) {
 		this.nascimento = nascimento;
 	}
 

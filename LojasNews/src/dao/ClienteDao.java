@@ -1,14 +1,15 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import conecta.Conecta;
 import principal.Cliente;
 
-public class ClienteDao implements IGerenciamentoDAO {
+public class ClienteDao implements IGerenciamentoDao {
 
 	private static Connection conexao = Conecta.getConnection();
 	private Cliente cliente;
@@ -33,16 +34,23 @@ public class ClienteDao implements IGerenciamentoDAO {
 					   + "(?, ?, ?, ?, ?, ?, ?)";
 
 		try {
-			PreparedStatement stmt = conexao.prepareStatement(sql);
+			PreparedStatement stmt = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, cliente.getNome());
 			stmt.setString(2, cliente.getSobrenome());
 			stmt.setString(3, cliente.getTelefone());
 			stmt.setString(4, cliente.getCpf());
 			stmt.setString(5, cliente.getEmail());
-			stmt.setDate(6, (Date) cliente.getNascimento());
+			stmt.setString(6, cliente.getNascimento());
 			stmt.setInt(7, 0);
+			stmt.executeUpdate();
 
-			stmt.execute();
+			ResultSet rs = stmt.getGeneratedKeys();
+			if(rs.next()) {
+				int codigo = rs.getInt(1);
+				this.cliente.setCodigo((long)codigo);	
+			}
+
+			rs.close();
 			stmt.close();
 
 		} catch (SQLException e) {
@@ -65,7 +73,7 @@ public class ClienteDao implements IGerenciamentoDAO {
 			stmt.setString(3, cliente.getTelefone());
 			stmt.setString(4, cliente.getCpf());
 			stmt.setString(5, cliente.getEmail());
-			stmt.setDate(6, (Date) cliente.getNascimento());
+			stmt.setString(6, cliente.getNascimento());
 			stmt.setLong(7, codigo);
 
 			stmt.execute();
