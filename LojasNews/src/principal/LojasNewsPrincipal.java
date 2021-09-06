@@ -143,17 +143,29 @@ public class LojasNewsPrincipal {
 
         System.out.println("Informe os dados do cliente:");
         
-        System.out.println("Nome: ");
         
+        System.out.print("Digite o CPF: ");
         input.nextLine();
+        String cpf = input.nextLine();
+        System.out.print("Digite o nome: ");
         String nome = input.nextLine();
+        System.out.print("Digite o sobrenome: ");
         String sobrenome = input.nextLine();
+        System.out.print("Digite o Telefone: ");
+        String telefone = input.nextLine();
+        System.out.print("Digite o email: ");
+        String email = input.nextLine();
+        System.out.print("Digite o nascimento: ");
+        String nascimento = input.nextLine();
+        
+        
         
        
-        Cliente cliente = new Cliente(nome, sobrenome, "(00)90000-0000");
+        Cliente cliente = new Cliente(cpf, nome, sobrenome, email, telefone, nascimento);
 	ClienteDao cDao = new ClienteDao(cliente);
 	cDao.inserir();
-        
+       
+        System.out.println("Cadastramento com sucesso!!");
 
     }
 
