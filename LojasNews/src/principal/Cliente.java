@@ -12,13 +12,14 @@ public class Cliente extends Pessoa implements ComportamentosPessoa {
 		super(nome, sobrenome, telefone);
 	}
 
-	public Cliente() {
+	public Cliente(String nome) {
 		super();
 	}
 
 	public Cliente(String cpf, String nome, String sobrenome, String email, String telefone, String nascimento) {
 		super(cpf, nome, sobrenome, email, telefone, nascimento);
 	}
+
 
 	public Pedido getPedido() {
 		return pedido;

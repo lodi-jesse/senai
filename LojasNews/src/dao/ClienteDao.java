@@ -18,6 +18,7 @@ public class ClienteDao implements IGerenciamentoDao {
 		this.cliente = cliente;
 	}
 
+   
 	public Cliente getCliente() {
 		return cliente;
 	}

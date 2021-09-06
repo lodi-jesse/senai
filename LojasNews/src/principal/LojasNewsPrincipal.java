@@ -10,12 +10,46 @@ import dao.ProdutoPesoDao;
 import dao.ProdutoUnidadeDao;
 import entidades.Item;
 import entidades.Pedido;
+import java.util.Scanner;
 
 public class LojasNewsPrincipal {
+    
+    public static Scanner input;
 
 	public static void main(String[] args) throws SQLException {
-
-		Cliente cliente = new Cliente("Joao", "Lima", "(00)90000-0000");
+                
+            
+            input = new  Scanner(System.in);
+            
+            while (true) {                
+                
+                System.out.println("  Informe o número da operação que deseja: ");
+                System.out.println("1 => Cliente"); 
+                System.out.println("2 => Estoque");
+                System.out.println("3 => Produto");
+                System.out.println("4 => Pedido");
+                System.out.println("5 => Itens");
+                System.out.println("0 => Sair/Voltar");
+                
+                int escolha = input.nextInt();
+                
+                if(escolha == 0)
+                    break;
+                if(escolha == 1) {
+                    acessoCliente();
+                }
+                /*if(escolha == 2)
+                    acessoEstoque();
+                if(escolha == 3)
+                    acessoProduto();
+                if(escolha == 4)
+                    acessoPedido();
+                if(escolha == 5)
+                    acessoItem();*/
+            }
+            
+            System.out.println("Obrigado pela preferência");
+		/*Cliente cliente = new Cliente("Joao", "Lima", "(00)90000-0000");
 		ClienteDao cDao = new ClienteDao(cliente);
 		cDao.inserir();
 
@@ -67,8 +101,71 @@ public class LojasNewsPrincipal {
 		fornecedor.comprar(produtoUn, 2);
 		fornecedor.comprar(produtoUn, 5);
 		fornecedor.comprar(produtoKg, 3.0);
-		fornecedor.comprar(produtoKg, 2.0);
+		fornecedor.comprar(produtoKg, 2.0);*/
 
 	}
 
+    private static void acessoCliente() {
+
+        while (true) {
+
+            System.out.println("## Informe o código do cadastro que deseja realizar!");
+            System.out.println("1 => Cadastar");
+            System.out.println("2 => Atualizar");
+            System.out.println("3 => Excluir");
+            System.out.println("4 => Consutar");
+            System.out.println("0 => Voltar");
+
+            int escolha = input.nextInt();
+
+            if(escolha == 0)
+                break;
+
+            switch(escolha){
+
+                case 1:
+                    cadastrarCliente();
+                    break;
+                case 2:
+                    alterarCliente();
+                    break;
+                case 3:
+                    excluirCliente();
+                    break;
+                default:
+                    consultarCliente();
+                    break;
+            }
+        }
+    }
+
+    private static void cadastrarCliente() {
+
+        System.out.println("Informe os dados do cliente:");
+        
+        System.out.println("Nome: ");
+        
+        input.nextLine();
+        String nome = input.nextLine();
+        String sobrenome = input.nextLine();
+        
+       
+        Cliente cliente = new Cliente(nome, sobrenome, "(00)90000-0000");
+	ClienteDao cDao = new ClienteDao(cliente);
+	cDao.inserir();
+        
+
+    }
+
+    private static void alterarCliente() {
+
+    }
+
+    private static void excluirCliente() {
+
+    }
+
+    private static void consultarCliente() {
+
+    }
 }
