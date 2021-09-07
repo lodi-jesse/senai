@@ -18,12 +18,69 @@ public class ProdutoUnidadeDao implements IGerenciamentoDao {
 		this.produtoU = produtoU;
 	}
 
-	public ProdutoUnidade getProdutoU() {
+	public ProdutoUnidade getProduto() {
 		return produtoU;
 	}
 
-	public void setProdutoU(ProdutoUnidade produtoU) {
+	public void setProduto(ProdutoUnidade produtoU) {
 		this.produtoU = produtoU;
+	}
+	
+	@Override
+	public void consultar() {
+		String sql = "SELECT * FROM produtos WHERE is_peso = 0";
+		
+		try {
+			Statement stmt = conexao.createStatement();
+			ResultSet resultado = stmt.executeQuery(sql);
+			
+			while(resultado.next()) {
+				long codigo = resultado.getInt("codigo");
+				String nome = resultado.getString("nome");
+				double preco = resultado.getDouble("preco");
+				int quantidade = resultado.getInt("quantidade");
+				
+				ProdutoUnidade produto = new ProdutoUnidade(nome, preco, quantidade);
+				produto.setCodigo(codigo);
+				
+				System.out.println(produto.toString());
+			}
+			resultado.close();
+			stmt.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return;
+		}
+
+	}
+	
+	public ProdutoUnidade obterProduto(Long codigo) {
+		ProdutoUnidade produto = null;
+		String sql = "SELECT * FROM produtos WHERE is_peso = 0 AND codigo = ?";
+		
+		try {
+			PreparedStatement stmt = conexao.prepareStatement(sql);
+			stmt.setLong(1, codigo);
+			ResultSet resultado = stmt.executeQuery();
+			
+			if (resultado.next()) {
+				String nome = resultado.getString("nome");
+				double preco = resultado.getDouble("preco");
+				int quantidade = resultado.getInt("quantidade");
+				
+				produto = new ProdutoUnidade(nome, preco, quantidade);
+				produto.setCodigo(codigo);
+				
+			}
+			resultado.close();
+			stmt.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return produto;
 	}
 
 	@Override
@@ -55,21 +112,19 @@ public class ProdutoUnidadeDao implements IGerenciamentoDao {
 			return false;
 		}
 		return true;
-
 	}
 
 	@Override
 	public boolean atualizar(Long codigo) {
 		String sql = "UPDATE produtos SET " 
-					  + "nome = ?, preco = ?, quantidade = ? "
+					  + "nome = ?, preco = ? "
 				   + "WHERE codigo  = ? AND is_peso = 0";
 		
 		try {
 			PreparedStatement smmt = conexao.prepareStatement(sql);
 			smmt.setString(1, produtoU.getNome());
 			smmt.setDouble(2, produtoU.getPreco());
-			smmt.setInt(3, produtoU.getQuantidadeEstoqueUn());
-			smmt.setLong(4, codigo);
+			smmt.setLong(3, codigo);
 
 			smmt.execute();
 			smmt.close();
@@ -96,9 +151,7 @@ public class ProdutoUnidadeDao implements IGerenciamentoDao {
 			e.printStackTrace();
 			return false;
 		}
-
 		return true;
-
 	}
 
 }

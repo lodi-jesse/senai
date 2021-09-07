@@ -12,14 +12,9 @@ public class Cliente extends Pessoa implements ComportamentosPessoa {
 		super(nome, sobrenome, telefone);
 	}
 
-	public Cliente(String nome) {
-		super();
-	}
-
 	public Cliente(String cpf, String nome, String sobrenome, String email, String telefone, String nascimento) {
 		super(cpf, nome, sobrenome, email, telefone, nascimento);
 	}
-
 
 	public Pedido getPedido() {
 		return pedido;
@@ -31,16 +26,7 @@ public class Cliente extends Pessoa implements ComportamentosPessoa {
 
 	@Override
 	public String toString() {
-		String mensagem = super.getNome() + ", com o pedido: " + pedido.getCodigo();
-
-		for (Item item : pedido.getItens()) {
-			if (item.getProduto().getClass() == ProdutoUnidade.class)
-				mensagem += "\n" + item.getQuantidade() + " Unidades: " + item.getProduto().getNome();
-			else
-				mensagem += "\n" + item.getQuantidade() + " Kg: " + item.getProduto().getNome();
-		}
-
-		return mensagem += "\ntotal: R$" + pedido.getValorTotal();
+		return getCodigo() + " - " + getNome() + " " + getSobrenome() + " - pedido [" + getPedido().getCodigo() + "]";
 	}
 
 	@Override

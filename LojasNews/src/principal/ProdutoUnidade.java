@@ -23,9 +23,13 @@ public class ProdutoUnidade extends Produto {
 	public void setQuantidadeEstoqueUn(int quantidadeEstoqueUn) {
 		if (quantidadeEstoqueUn < 0)
 			throw new InvalidParameterException(
-					"Quantidade no estoque do produto \"" + super.getNome() + "\" é inválida");
+					"Quantidade no estoque do produto \"" + super.getNome() + "\" e invalida");
 		else
 			this.quantidadeEstoqueUn = quantidadeEstoqueUn;
+	}
+	
+	public String toString() {
+		return getCodigo() + " - " + getNome() + "(" + quantidadeEstoqueUn + " Un) - RS " + getPreco();
 	}
 
 }

@@ -25,6 +25,60 @@ public class FornecedorDao implements IGerenciamentoDao {
 	public void setFornecedor(Fornecedor fornecedor) {
 		this.fornecedor = fornecedor;
 	}
+	
+	@Override
+	public void consultar() {
+		String sql = "SELECT * FROM pessoas WHERE is_fornecedor = 1";
+		
+		try {
+			Statement stmt = conexao.createStatement();
+			ResultSet resultado = stmt.executeQuery(sql);
+			
+			while (resultado.next()) {
+				long codigo = resultado.getLong("codigo");
+				String nome = resultado.getString("nome");
+				String sobrenome = resultado.getString("sobrenome");
+				String telefone = resultado.getString("telefone");
+				
+				Fornecedor fornecedor = new Fornecedor(nome, sobrenome, telefone);
+				fornecedor.setCodigo(codigo);
+				
+				System.out.println(fornecedor.toString());
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return;
+		}
+		
+	}
+	
+	public Fornecedor obterFornecedor(Long codigo) {
+		Fornecedor fornecedor = null;
+		String sql = "SELECT * FROM pessoas WHERE is_fornecedor = 1 AND codigo = ?";
+		
+		try {
+			PreparedStatement stmt = conexao.prepareStatement(sql);
+			stmt.setLong(1, codigo);
+			ResultSet resultado = stmt.executeQuery();
+			
+			if (resultado.next()) {
+				String nome = resultado.getString("Nome");
+				String sobrenome = resultado.getString("sobrenome");
+				String telefone = resultado.getString("telefone");
+				
+				fornecedor = new Fornecedor(nome, sobrenome, telefone);
+				fornecedor.setCodigo(codigo);
+			}
+			stmt.close();
+			resultado.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return fornecedor;
+	}
 
 	@Override
 	public boolean inserir() {

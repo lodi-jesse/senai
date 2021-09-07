@@ -8,7 +8,7 @@ public class Conecta {
 
 	private final static String URL = "jdbc:mysql://localhost:3306/lojas_news";
 	private final static String USER = "root";
-	private final static String PASSWORD = "";
+	private final static String PASSWORD = "Criarsenha";
 
 	private static Connection conexao;
 

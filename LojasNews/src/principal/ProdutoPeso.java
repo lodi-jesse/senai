@@ -27,5 +27,9 @@ public class ProdutoPeso extends Produto {
 		else
 			this.quantidadeEstoqueKg = quantidadeEstoqueKg;
 	}
+	
+	public String toString() {
+		return getCodigo() + " - " + getNome() + "(" + quantidadeEstoqueKg + " Kg) - RS " + getPreco();
+	}
 
 }

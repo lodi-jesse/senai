@@ -2,7 +2,9 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import conecta.Conecta;
 import entidades.Produto;
@@ -46,6 +48,31 @@ public class CompraParaEstoqueDao implements IGerenciamentoDao {
 
 	public void setQuantidade(double quantidade) {
 		this.quantidade = quantidade;
+	}
+	
+	@Override
+	public void consultar() {
+		String sql = "SELECT * FROM compras_para_estoque";
+		
+		try {
+			Statement stmt = conexao.createStatement();
+			ResultSet resultado = stmt.executeQuery(sql);
+			
+			while(resultado.next()) {
+				Fornecedor fornecedor = new FornecedorDao(null).obterFornecedor(resultado.getLong("pessoas_codigo"));
+//				Produto produto = resultado.; ????????
+				double quantidade = resultado.getDouble("quantidade");
+				
+				CompraParaEstoqueDao compra = new CompraParaEstoqueDao(fornecedor, produto, quantidade);
+			}
+			
+			resultado.close();
+			stmt.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return;
+		}
 	}
 
 	@Override
@@ -111,6 +138,11 @@ public class CompraParaEstoqueDao implements IGerenciamentoDao {
 			return false;
 		}
 		return true;
+	}
+	
+	@Override
+	public String toString() {
+		return fornecedor.getNome() + produto.getNome() + quantidade;
 	}
 		
 }

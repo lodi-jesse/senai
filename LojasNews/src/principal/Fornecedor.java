@@ -19,7 +19,7 @@ public class Fornecedor extends Pessoa implements ComportamentosPessoa {
 
 	@Override
 	public String toString() {
-		return "\nFornecedor " + super.getCodigo() + ": " + super.getNome() + "\ncontato: " + super.getTelefone();
+		return getCodigo() + " - " + getNome() + " " + getSobrenome() + " - " + getTelefone();
 	}
 
 	@Override
