@@ -8,6 +8,7 @@ import java.sql.Statement;
 
 import conecta.Conecta;
 import entidades.Pedido;
+import principal.Cliente;
 
 public class PedidoDao implements IGerenciamentoDao {
 
@@ -24,6 +25,33 @@ public class PedidoDao implements IGerenciamentoDao {
 
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
+	}
+
+	@Override
+	public void consultar() {
+		String sql = "SELECT * FROM pedidos";
+		
+		try {
+			Statement stmt = conexao.createStatement();
+			ResultSet resultado = stmt.executeQuery(sql);
+
+			while (resultado.next()) {
+				Cliente cliente = new ClienteDao(null).obterCliente(resultado.getLong("pessoas.codigo"));
+				String data = resultado.getString("data_compra");
+				
+				Pedido pedido = new Pedido(cliente);
+				pedido.setDataCompra(data);
+				
+				System.out.println(pedido.toString());
+			}
+
+			resultado.close();
+			stmt.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return;
+		}
 	}
 
 	@Override
