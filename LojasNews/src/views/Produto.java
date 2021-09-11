@@ -1,9 +1,7 @@
 package views;
 
-import java.sql.Connection;
 import java.util.Scanner;
 
-import conecta.Conecta;
 import dao.FornecedorDao;
 import dao.ProdutoPesoDao;
 import dao.ProdutoUnidadeDao;
@@ -14,7 +12,6 @@ import principal.ProdutoUnidade;
 public class Produto implements IGerenciamentoView {
 	
 	private static Scanner input = new Scanner(System.in);
-	Connection conexao = Conecta.getConnection();
 	ProdutoUnidadeDao daoUnidade = new ProdutoUnidadeDao(null);
 	ProdutoPesoDao daoPeso = new ProdutoPesoDao(null);
 	FornecedorDao daoFornecedor = new FornecedorDao(null);
@@ -69,8 +66,8 @@ public class Produto implements IGerenciamentoView {
 	@Override
 	public void inserir() {
 		System.out.println("\n/// Inserir");
+
 		int resposta = opcao1ou2("ProdutoUnidade", "ProdutoPeso");
-		
 		if (resposta == -1) return;
 		
 		input.nextLine(); // INPUT PARA EVITAR BUG
@@ -99,7 +96,7 @@ public class Produto implements IGerenciamentoView {
 	@Override
 	public void atualizar() {
 		System.out.println("\n/// Atualizar ou Comprar");
-
+		
 		int resposta = opcao1ou2("\nProdutoUnidade", "ProdutoPeso");
 		if (resposta == -1) return;
 		

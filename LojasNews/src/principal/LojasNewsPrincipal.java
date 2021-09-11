@@ -20,8 +20,6 @@ public class LojasNewsPrincipal {
 
 	public static void main(String[] args) throws SQLException {
 
-		System.out.println(new Cliente("teste", "teste1", "teste2").toString());
-
 		input = new Scanner(System.in);
 		int escolha = -1;
 

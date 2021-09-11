@@ -60,10 +60,17 @@ public class CompraParaEstoqueDao implements IGerenciamentoDao {
 			
 			while(resultado.next()) {
 				Fornecedor fornecedor = new FornecedorDao(null).obterFornecedor(resultado.getLong("pessoas_codigo"));
-//				Produto produto = resultado.; ????????
+				Produto produto;
+				try {
+					produto = new ProdutoUnidadeDao(null).obterProduto(this.produto.getCodigo());
+				} catch (Exception e) {
+					produto = new ProdutoPesoDao(null).obterProduto(this.produto.getCodigo());
+				}
 				double quantidade = resultado.getDouble("quantidade");
 				
 				CompraParaEstoqueDao compra = new CompraParaEstoqueDao(fornecedor, produto, quantidade);
+				
+				System.out.println(compra.toString());
 			}
 			
 			resultado.close();
@@ -142,7 +149,9 @@ public class CompraParaEstoqueDao implements IGerenciamentoDao {
 	
 	@Override
 	public String toString() {
-		return fornecedor.getNome() + produto.getNome() + quantidade;
+		return "[" + fornecedor.getCodigo() + "]" + fornecedor.getNome() + " - " +
+				"[" + produto.getCodigo() + "]" + produto.getNome() +
+				" (" + quantidade + ")";
 	}
 		
 }

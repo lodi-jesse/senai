@@ -5,6 +5,9 @@ import entidades.Item;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class ItemDao implements IGerenciamentoDao {
 
@@ -21,6 +24,27 @@ public class ItemDao implements IGerenciamentoDao {
 
 	public void setItem(Item item) {
 		this.item = item;
+	}
+
+	@Override
+	public void consultar() {
+		String sql = "SELECT * FROM itens";
+		
+		try {
+			Statement stmt = conexao.createStatement();
+			ResultSet resultado = stmt.executeQuery(sql);
+
+			while (resultado.next()) {
+				// TODO terminar consulta!
+			}
+
+			resultado.close();
+			stmt.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return;
+		}
 	}
 
 	@Override
