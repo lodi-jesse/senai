@@ -10,8 +10,10 @@ import dao.ProdutoPesoDao;
 import dao.ProdutoUnidadeDao;
 import entidades.Item;
 import entidades.Pedido;
+import entidades.Pessoa;
 import views.Produto;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class LojasNewsPrincipal {
@@ -126,6 +128,13 @@ public class LojasNewsPrincipal {
 	}
 
 	private static void consultarCliente() {
-
+		
+		List<Cliente> clientes = ClienteDao.buscaCliente();
+		
+		System.out.println("Os eventos cadastrados são \n");
+        
+        for (Cliente cliente : clientes){
+            System.out.println(cliente);
+        } 
 	}
 }

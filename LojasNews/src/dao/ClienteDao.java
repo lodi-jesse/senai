@@ -5,9 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import conecta.Conecta;
+import entidades.Pessoa;
 import principal.Cliente;
+import sun.tools.tree.ThisExpression;
 
 public class ClienteDao implements IGerenciamentoDao {
 
@@ -159,6 +163,36 @@ public class ClienteDao implements IGerenciamentoDao {
 		}
 		return true;
 
+	}
+
+
+	@SuppressWarnings("unused")
+	public static List<Cliente> buscaCliente() {
+		List<Pessoa> cliente = new ArrayList<Pessoa>();
+		String sql = "SELECT * FROM pessoas WHERE is_fornecedor = 0";
+	
+	try {
+		Statement stmt = conexao.createStatement();
+		ResultSet resultado = stmt.executeQuery(sql);
+		
+		while (resultado.next()) {
+			long codigo = resultado.getLong("codigo");
+			String nome = resultado.getString("nome");
+			String sobrenome = resultado.getString("sobrenome");
+			String telefone = resultado.getString("telefone");
+			
+			Cliente cliente1 = new Cliente(nome, sobrenome, telefone);
+			cliente1.setCodigo(codigo);
+			
+		}
+		
+		resultado.close();
+		stmt.close();
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+		return null;
 	}
 
 }
