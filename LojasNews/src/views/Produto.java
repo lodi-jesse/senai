@@ -31,9 +31,9 @@ public class Produto implements IGerenciamentoView {
 			System.out.println("\n||||| PRODUTOS |||||\n");
 			System.out.println("1 => Consultar");
 			System.out.println("2 => Inserir");
-	        System.out.println("3 => Atualizar/Comprar");
-	        System.out.println("4 => Excluir");
-	        System.out.println("\n0 => Voltar\n");
+                        System.out.println("3 => Atualizar/Comprar");
+                        System.out.println("4 => Excluir");
+                        System.out.println("\n0 => Voltar\n");
 			System.out.print("## Informe o codigo da acao que deseja realizar: ");
 			escolha = input.nextInt();
 			
