@@ -11,7 +11,7 @@ import java.util.List;
 import conecta.Conecta;
 import entidades.Pessoa;
 import principal.Cliente;
-import sun.tools.tree.ThisExpression;
+
 
 public class ClienteDao implements IGerenciamentoDao {
 
