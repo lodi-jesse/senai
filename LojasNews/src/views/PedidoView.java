@@ -128,7 +128,7 @@ public class PedidoView implements IGerenciamentoView {
 
 					cliente.comprar(produto, quantidade);
 					item = new Item(pedido, produto, quantidade);
-					
+
 				} else {
 				daoProdKg.consultar();
 				
@@ -147,6 +147,7 @@ public class PedidoView implements IGerenciamentoView {
 				daoItem.inserir();
 			}
 		}
+		System.out.println("\n>>> Pedido inserido com sucesso\n");
 	}
 	
 	@Override
@@ -170,6 +171,8 @@ public class PedidoView implements IGerenciamentoView {
 		daoPedido.setPedido(new Pedido(cliente, data));
 		daoPedido.atualizar(codigoPedido);
 		
+		System.out.println("\n>>> Pedido atualizado com sucesso\n");
+		
 	}
 	 
 	@Override
@@ -177,9 +180,9 @@ public class PedidoView implements IGerenciamentoView {
 		System.out.println("\n/// Excluir");
 		
 		System.out.print("\nCodigo do pedido: ");
-		Long codigo = input.nextLong();
+		daoPedido.excluir(input.nextLong());
 		
-		daoPedido.excluir(codigo);
+		System.out.println("\nPedido excluido com sucesso!!");
 	}
 	
 }

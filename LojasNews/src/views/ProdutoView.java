@@ -188,12 +188,12 @@ public class ProdutoView implements IGerenciamentoView {
 	
 	@Override
 	public void excluir() {
-		System.out.println("/// Excluir");
+		System.out.println("\n/// Excluir");
 		
 		int resposta = opcoes("ProdutoUnidade", "ProdutoPeso");
 		if (resposta == -1) return;
 		
-		System.out.print("\nInforme o codigo do produto: ");
+		System.out.print("Informe o codigo do produto: ");
 		Long codigo = input.nextLong();
 		
 		if (resposta == 1) 
@@ -201,7 +201,7 @@ public class ProdutoView implements IGerenciamentoView {
 		else
 			daoPeso.excluir(codigo);
 		
-		System.out.println("Produto excluido com sucesso!!");
+		System.out.println("\nProduto excluido com sucesso!!");
 
 	}
 	

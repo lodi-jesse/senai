@@ -187,7 +187,7 @@ public class PessoaView implements IGerenciamentoView {
 		else 
 			daoFornecedor.excluir(codigo);
 		
-		System.out.println("Excluído com sucesso!!");
+		System.out.println("Excluido com sucesso!!");
 	}
 
 }

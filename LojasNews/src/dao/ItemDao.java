@@ -65,7 +65,7 @@ public class ItemDao implements IGerenciamentoDao {
 			stmt.close();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("\nErro: Produto duplicado XXX");
 			return false;
 		}
 

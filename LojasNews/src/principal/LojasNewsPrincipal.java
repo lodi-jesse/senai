@@ -3,6 +3,7 @@ package principal;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import views.CompraEstoqueView;
 import views.PedidoView;
 import views.PessoaView;
 import views.ProdutoView;
@@ -37,9 +38,9 @@ public class LojasNewsPrincipal {
 			case 3:	
 				PedidoView.iniciar();
 				break;
-//			case 4:
-//              implementar...
-//              break;
+			case 4:
+				CompraEstoqueView.iniciar();
+				break;
 			case 0:
 				break;
 			default:

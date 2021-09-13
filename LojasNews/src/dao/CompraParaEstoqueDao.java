@@ -1,5 +1,6 @@
 package dao;
 
+import java.security.InvalidParameterException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,6 +10,8 @@ import java.sql.Statement;
 import conecta.Conecta;
 import entidades.Produto;
 import principal.Fornecedor;
+import principal.ProdutoPeso;
+import principal.ProdutoUnidade;
 
 // Este DAO em específico, se comporta um pouco diferente dos de mais
 // por seus objetos no Banco de Dados serem criados a partir de uma Função presente na Classe Fornecedor.
@@ -16,16 +19,33 @@ import principal.Fornecedor;
 public class CompraParaEstoqueDao implements IGerenciamentoDao {
 
 	private static Connection conexao = Conecta.getConnection();
+	private Long codigo;
 	private Fornecedor fornecedor;
 	private Produto produto;
 	private double quantidade;
 	
-	public CompraParaEstoqueDao(Fornecedor fornecedor, Produto produto, double quantidade) {
-		this.fornecedor = fornecedor;
-		this.produto = produto;
-		this.quantidade = quantidade;
+	public CompraParaEstoqueDao() {
+		
 	}
 	
+	public CompraParaEstoqueDao(Fornecedor fornecedor, Produto produto, double quantidade) {
+		if (fornecedor == null || produto == null || quantidade < 0)
+			throw new InvalidParameterException("Atributo(s) invalido(s)");
+		else {
+			this.fornecedor = fornecedor;
+			this.produto = produto;
+			this.quantidade = quantidade;
+		}
+	}
+	
+	public Long getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
+	}
+
 	public Fornecedor getFornecedor() {
 		return fornecedor;
 	}
@@ -53,22 +73,26 @@ public class CompraParaEstoqueDao implements IGerenciamentoDao {
 	@Override
 	public void consultar() {
 		String sql = "SELECT * FROM compras_para_estoque";
+		CompraParaEstoqueDao compra;
 		
 		try {
 			Statement stmt = conexao.createStatement();
 			ResultSet resultado = stmt.executeQuery(sql);
 			
 			while(resultado.next()) {
+				Long codigo = resultado.getLong("codigo");
 				Fornecedor fornecedor = new FornecedorDao(null).obterFornecedor(resultado.getLong("pessoas_codigo"));
-				Produto produto;
-				try {
-					produto = new ProdutoUnidadeDao(null).obterProduto(this.produto.getCodigo());
-				} catch (Exception e) {
-					produto = new ProdutoPesoDao(null).obterProduto(this.produto.getCodigo());
-				}
 				double quantidade = resultado.getDouble("quantidade");
 				
-				CompraParaEstoqueDao compra = new CompraParaEstoqueDao(fornecedor, produto, quantidade);
+				try {
+					ProdutoUnidade produto = new ProdutoUnidadeDao(null).obterProduto(resultado.getLong("produtos_codigo"));
+					compra = new CompraParaEstoqueDao(fornecedor, produto, quantidade);
+					compra.setCodigo(codigo);
+				} catch (Exception e) {
+					ProdutoPeso produto = new ProdutoPesoDao(null).obterProduto(resultado.getLong("produtos_codigo"));
+					compra = new CompraParaEstoqueDao(fornecedor, produto, quantidade);
+					compra.setCodigo(codigo);
+				}
 				
 				System.out.println(compra.toString());
 			}
@@ -149,8 +173,8 @@ public class CompraParaEstoqueDao implements IGerenciamentoDao {
 	
 	@Override
 	public String toString() {
-		return "[" + fornecedor.getCodigo() + "]" + fornecedor.getNome() + " - " +
-				"[" + produto.getCodigo() + "]" + produto.getNome() +
+		return getCodigo() + " - fornecedor: " + fornecedor.getNome() + " - " +
+				produto.getNome() +
 				" (" + quantidade + ")";
 	}
 		
