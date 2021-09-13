@@ -73,8 +73,12 @@ public class ClienteDao implements IGerenciamentoDao {
 				String nome = resultado.getString("nome");
 				String sobrenome = resultado.getString("sobrenome");
 				String telefone = resultado.getString("telefone");
+				String cpf = resultado.getString("cpf");
+				String email = resultado.getString("email");
+				String nascimento = resultado.getString("nascimento");
 				
-				cliente = new Cliente(nome, sobrenome, telefone);
+				cliente = new Cliente(cpf, nome, sobrenome, email, telefone, nascimento);
+				cliente.setCodigo(codigo);
 			}
 			resultado.close();
 			stmt.close();

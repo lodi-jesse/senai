@@ -17,7 +17,7 @@ public class Item {
 
 	public Item(Pedido pedido, ProdutoUnidade produto, int quantidade) {
 		if (pedido == null || quantidade <= 0 || quantidade > produto.getQuantidadeEstoqueUn())
-			throw new InvalidParameterException("Atributo(s) inválido(s)");
+			throw new InvalidParameterException("Atributo(s) invalido(s)");
 		else {
 			this.pedido = pedido;
 			this.produto = produto;
@@ -29,7 +29,7 @@ public class Item {
 
 	public Item(Pedido pedido, ProdutoPeso produto, double quantidade) {
 		if (pedido == null || quantidade <= 0 || quantidade > produto.getQuantidadeEstoqueKg())
-			throw new InvalidParameterException("Atributo(s) inválido(s)");
+			throw new InvalidParameterException("Atributo(s) invalido(s)");
 		else {
 			this.pedido = pedido;
 			this.produto = produto;
@@ -61,6 +61,11 @@ public class Item {
 
 	public void setQuantidade(double quantidade) {
 		this.quantidade = quantidade;
+	}
+
+	@Override
+	public String toString() {
+		return "pedido[" + pedido.getCodigo() + "] - " + produto.getNome() + " - " + quantidade;
 	}
 
 }

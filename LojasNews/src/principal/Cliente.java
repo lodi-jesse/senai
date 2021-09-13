@@ -26,7 +26,7 @@ public class Cliente extends Pessoa implements ComportamentosPessoa {
 
 	@Override
 	public String toString() {
-		return getCodigo() + " - " + getNome() + " " + getSobrenome() + " - pedido [" + getPedido().getCodigo() + "]";
+		return getCodigo() + " - " + getNome() + " " + getSobrenome() + " - " + getTelefone();
 	}
 
 	@Override

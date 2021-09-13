@@ -19,6 +19,11 @@ public class Pedido {
 	public Pedido(Cliente cliente) {
 		this.cliente = cliente;
 	}
+	
+	public Pedido(Cliente cliente, String dataCompra) {
+		this.cliente = cliente;
+		this.dataCompra = dataCompra;
+	}
 
 	public Pedido(Cliente cliente, Item... itens) {
 		this.cliente = cliente;
@@ -69,7 +74,7 @@ public class Pedido {
 	
 	@Override
 	public String toString() {
-		return "pedido[" + codigo + "] - " + cliente.getNome() + " - " + dataCompra;
+		return "pedido[" + codigo + "] - " + cliente.getNome() + " " + cliente.getSobrenome() + " - " + dataCompra;
 	}
 
 }

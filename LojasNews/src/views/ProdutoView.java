@@ -9,7 +9,7 @@ import principal.Fornecedor;
 import principal.ProdutoPeso;
 import principal.ProdutoUnidade;
 
-public class Produto implements IGerenciamentoView {
+public class ProdutoView implements IGerenciamentoView {
 	
 	private static Scanner input = new Scanner(System.in);
 	ProdutoUnidadeDao daoUnidade = new ProdutoUnidadeDao(null);
@@ -17,7 +17,7 @@ public class Produto implements IGerenciamentoView {
 	FornecedorDao daoFornecedor = new FornecedorDao(null);
 
 	public static void iniciar() {
-		new Produto().menu();
+		new ProdutoView().menu();
 	}
 	
 	@Override
@@ -28,9 +28,9 @@ public class Produto implements IGerenciamentoView {
 			System.out.println("\n||||| PRODUTOS |||||\n");
 			System.out.println("1 => Consultar");
 			System.out.println("2 => Inserir");
-                        System.out.println("3 => Atualizar/Comprar");
-                        System.out.println("4 => Excluir");
-                        System.out.println("\n0 => Voltar\n");
+            System.out.println("3 => Atualizar/Comprar");
+            System.out.println("4 => Excluir");
+            System.out.println("\n0 => Voltar\n");
 			System.out.print("## Informe o codigo da acao que deseja realizar: ");
 			escolha = input.nextInt();
 			
@@ -67,7 +67,7 @@ public class Produto implements IGerenciamentoView {
 	public void inserir() {
 		System.out.println("\n/// Inserir");
 
-		int resposta = opcao1ou2("ProdutoUnidade", "ProdutoPeso");
+		int resposta = opcoes("ProdutoUnidade", "ProdutoPeso");
 		if (resposta == -1) return;
 		
 		input.nextLine(); // INPUT PARA EVITAR BUG
@@ -97,7 +97,7 @@ public class Produto implements IGerenciamentoView {
 	public void atualizar() {
 		System.out.println("\n/// Atualizar ou Comprar");
 		
-		int resposta = opcao1ou2("\nProdutoUnidade", "ProdutoPeso");
+		int resposta = opcoes("\nProdutoUnidade", "ProdutoPeso");
 		if (resposta == -1) return;
 		
 		if (resposta == 1) {
@@ -106,7 +106,8 @@ public class Produto implements IGerenciamentoView {
 			long codigo = input.nextLong();
 			ProdutoUnidade produto = daoUnidade.obterProduto(codigo);
 			
-			resposta = opcao1ou2("Atualizar", "Comprar");
+			resposta = opcoes("Atualizar", "Comprar");
+			if (resposta == -1) return;
 			
 			if (resposta == 1) {
 				input.nextLine(); //INPUT PARA EVITAR BUG
@@ -147,7 +148,8 @@ public class Produto implements IGerenciamentoView {
 			long codigo = input.nextLong();
 			ProdutoPeso produto = daoPeso.obterProduto(codigo);
 			
-			resposta = opcao1ou2("Atualizar", "Comprar");
+			resposta = opcoes("Atualizar", "Comprar");
+			if (resposta == -1) return;
 			
 			if (resposta == 1) {
 				input.nextLine(); //INPUT PARA EVITAR BUG
@@ -184,21 +186,37 @@ public class Produto implements IGerenciamentoView {
 
 	}
 	
-	public int opcao1ou2(String opcao1, String opcao2) {
-		System.out.print(opcao1 + " [1] / " + opcao2 + " [2] : ");
+	@Override
+	public void excluir() {
+		System.out.println("/// Excluir");
+		
+		int resposta = opcoes("ProdutoUnidade", "ProdutoPeso");
+		if (resposta == -1) return;
+		
+		System.out.print("\nInforme o codigo do produto: ");
+		Long codigo = input.nextLong();
+		
+		if (resposta == 1) 
+			daoUnidade.excluir(codigo);
+		else
+			daoPeso.excluir(codigo);
+		
+		System.out.println("Produto excluido com sucesso!!");
+
+	}
+	
+	public int opcoes(String... opcoes) {
+		for (int i = 0; i < opcoes.length; i++) {
+			System.out.print(opcoes[i] + "["+(i+1)+"] / ");
+		}
 		int resposta = input.nextInt();
 		
-		if (resposta != 1 && resposta != 2) {
+		if (resposta > opcoes.length) {
 			System.out.println("Erro: Resposta Invalida XXX\n");
 			return -1;
 		}
 		return resposta;
 	}
 	
-	@Override
-	public void excluir() {
-		System.out.println("/// Excluir");
-		
-	}
 	
 }

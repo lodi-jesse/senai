@@ -15,8 +15,10 @@ public class Conecta {
 	public static Connection getConnection() {
 
 		try {
-			if (conexao == null || conexao.isClosed())
-				return DriverManager.getConnection(URL, USER, PASSWORD);
+			if (conexao == null || conexao.isClosed()) {
+				conexao = DriverManager.getConnection(URL, USER, PASSWORD);
+				return conexao;
+			}
 			else
 				return conexao;
 

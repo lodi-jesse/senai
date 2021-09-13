@@ -66,8 +66,11 @@ public class FornecedorDao implements IGerenciamentoDao {
 				String nome = resultado.getString("Nome");
 				String sobrenome = resultado.getString("sobrenome");
 				String telefone = resultado.getString("telefone");
+				String cpf = resultado.getString("cpf");
+				String email = resultado.getString("email");
+				String nascimento = resultado.getString("nascimento");
 				
-				fornecedor = new Fornecedor(nome, sobrenome, telefone);
+				fornecedor = new Fornecedor(cpf, nome, sobrenome, email, telefone, nascimento);
 				fornecedor.setCodigo(codigo);
 			}
 			stmt.close();
