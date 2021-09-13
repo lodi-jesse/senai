@@ -1,20 +1,11 @@
 package principal;
 
 import java.sql.SQLException;
-
-import dao.ClienteDao;
-import dao.FornecedorDao;
-import dao.ItemDao;
-import dao.PedidoDao;
-import dao.ProdutoPesoDao;
-import dao.ProdutoUnidadeDao;
-import entidades.Item;
-import entidades.Pedido;
-import entidades.Pessoa;
-import views.Produto;
-
 import java.util.List;
 import java.util.Scanner;
+
+import dao.ClienteDao;
+import views.Produto;
 
 public class LojasNewsPrincipal {
 
